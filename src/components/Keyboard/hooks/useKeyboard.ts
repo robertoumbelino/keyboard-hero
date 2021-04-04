@@ -142,6 +142,7 @@ export const useKeyboard = () => {
     /**
      * Play music.
      */
+    music.currentTime = 0
     music.play()
 
     /**
