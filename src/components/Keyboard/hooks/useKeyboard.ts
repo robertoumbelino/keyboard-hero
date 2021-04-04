@@ -73,7 +73,16 @@ export const useKeyboard = () => {
      */
     if (isEqual) {
       setPoint({ ...point, hits: point.hits + 1 })
-      return setRandomizedKey(randomize(letters))
+
+      /**
+       * Get letters without current key.
+       */
+      const lettersWithoutCurrentKey = letters
+        .split('')
+        .filter(letter => letter !== randomizedKey)
+        .join('')
+
+      return setRandomizedKey(randomize(lettersWithoutCurrentKey))
     }
 
     /**

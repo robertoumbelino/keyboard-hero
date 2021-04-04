@@ -52,6 +52,7 @@ Como é de praxe em todos os _challenges_ há um _plus_, implementações adicio
 
 - Layout de um teclado.
 - Não contabilizar como um erro as teclas que não são letras.
+- Não randomizar a mesma letra em sequência.
 
 ---
 
