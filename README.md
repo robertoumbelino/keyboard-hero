@@ -50,7 +50,8 @@ Como é de praxe em todos os _challenges_ há um _plus_, implementações adicio
 
 ✅ Implementações extras.
 
-- Layout de um teclado
+- Layout de um teclado.
+- Não contabilizar como um erro as teclas que não são letras.
 
 ---
 

@@ -54,6 +54,16 @@ export const useKeyboard = () => {
     }
 
     /**
+     * Is not letter.
+     */
+    const isNotLetter = letters.includes(key)
+
+    /**
+     * Don't consider a mistake when the key not be a letter.
+     */
+    if (!isNotLetter) return
+
+    /**
      * Check if key typed is equal than generated.
      */
     const isEqual = key === randomizedKey
@@ -80,6 +90,9 @@ export const useKeyboard = () => {
     setRandomizedKey('')
   }
 
+  /**
+   * Count down.
+   */
   useEffect(() => {
     setTimeout(() => {
       if (time <= 0) return stopGame()
