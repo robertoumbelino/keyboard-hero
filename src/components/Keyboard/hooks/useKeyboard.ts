@@ -2,6 +2,18 @@ import { useState, useEffect } from 'react'
 
 import { useEventListener } from '../../../hooks/useEventListener'
 
+// @ts-ignore
+import musicPath from '../../../assets/sounds/top-gear.mp3'
+
+// @ts-ignore
+import mistakeSoundPath from '../../../assets/sounds/mistake.mp3'
+
+// @ts-ignore
+import finalSoundPath from '../../../assets/sounds/final.mp3'
+
+// @ts-ignore
+import scoreSoundPath from '../../../assets/sounds/score.mp3'
+
 /**
  * Props.
  */
@@ -28,10 +40,11 @@ export const useKeyboard = () => {
   /**
    * States.
    */
-  const [randomizedKey, setRandomizedKey] = useState('')
+  const [time, setTime] = useState(0)
+  const [music] = useState(new Audio(musicPath))
   const [point, setPoint] = useState<Point>({ hits: 0, mistakes: 0 })
   const [isRunning, setIsRunning] = useState(false)
-  const [time, setTime] = useState(0)
+  const [randomizedKey, setRandomizedKey] = useState('')
 
   /**
    * Key event.
@@ -72,6 +85,14 @@ export const useKeyboard = () => {
      * Is equal, generate a new key.
      */
     if (isEqual) {
+      /**
+       * Play positive sound effect.
+       */
+      new Audio(scoreSoundPath).play()
+
+      /**
+       * Set new point.
+       */
       setPoint({ ...point, hits: point.hits + 1 })
 
       /**
@@ -86,6 +107,11 @@ export const useKeyboard = () => {
     }
 
     /**
+     * Play negative sound effect.
+     */
+    new Audio(mistakeSoundPath).play()
+
+    /**
      * Not equal, is a mistake.
      */
     setPoint({ ...point, mistakes: point.mistakes + 1 })
@@ -95,20 +121,14 @@ export const useKeyboard = () => {
    * Stop.
    */
   const stopGame = () => {
+    /**
+     * Stop musics.
+     */
+    music.pause()
+
     setIsRunning(false)
     setRandomizedKey('')
   }
-
-  /**
-   * Count down.
-   */
-  useEffect(() => {
-    setTimeout(() => {
-      if (time <= 0) return stopGame()
-
-      setTime(time - 1)
-    }, 1000)
-  }, [time])
 
   /**
    * Start click.
@@ -120,6 +140,11 @@ export const useKeyboard = () => {
     if (isRunning) return
 
     /**
+     * Play music.
+     */
+    music.play()
+
+    /**
      * Start.
      */
     setTime(60)
@@ -127,6 +152,27 @@ export const useKeyboard = () => {
     setIsRunning(true)
     setRandomizedKey(randomize(letters))
   }
+
+  /**
+   * Count down.
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      if (time <= 0) return stopGame()
+
+      setTime(time - 1)
+    }, 1000)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [time])
+
+  /**
+   * Change song.
+   */
+  useEffect(() => {
+    const isFinal10Seconds = time <= 5
+
+    if (isFinal10Seconds) new Audio(finalSoundPath).play()
+  }, [time, music])
 
   /**
    * Events.
