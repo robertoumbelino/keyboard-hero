@@ -143,6 +143,8 @@ export const useKeyboard = () => {
      * Play music.
      */
     music.currentTime = 0
+    music.volume = 0.2
+    music.playbackRate = 1
     music.play()
 
     /**
@@ -172,7 +174,10 @@ export const useKeyboard = () => {
   useEffect(() => {
     const isFinal10Seconds = time <= 5
 
-    if (isFinal10Seconds) new Audio(finalSoundPath).play()
+    if (isFinal10Seconds) {
+      music.playbackRate = 1.2
+      new Audio(finalSoundPath).play()
+    }
   }, [time, music])
 
   /**

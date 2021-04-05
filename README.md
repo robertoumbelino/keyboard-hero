@@ -54,7 +54,8 @@ Como é de praxe em todos os _challenges_ há um _plus_, implementações adicio
 - Não contabilizar como um erro as teclas que não são letras.
 - Não randomizar a mesma letra em sequência.
 - Música de fundo.
-- Os últimos 5 segundos fica sendo sinalizado através de um efeito sonoro.
+- Nos últimos 5 segundos é realizado um efeito sonoro para cada segundo faltante.
+- Nos últimos 5 segundos é acelerado a música.
 - Efeito sonoro, quando acerta e quando erra.
 
 ---
