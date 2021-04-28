@@ -60,23 +60,6 @@ Como é de praxe em todos os _challenges_ há um _plus_, implementações adicio
 
 ---
 
-### 📚 Novos conhecimentos
-
-Por mais mínimo que seja o projeto, sempre será aprendido algo novo, e nesse projeto o que adquiri de conhecimento foi:
-
-<br/>
-
-#### #️⃣ **Title**
-
-**Sobre**:
-Descrição.
-
-**Uso**: Utilização no challenge.
-
-**Para mais informação** [Acesse aqui]().
-
----
-
 ## 🚀 Tecnologias utilizadas
 
 Tecnologias que utilizem para resolução desse desafio.
